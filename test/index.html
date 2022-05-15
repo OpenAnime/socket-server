@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script src="main.js"></script>
+
+    <input type="text" id="username">
+    <div id="chatBar" />
+    <input type="text" id="messageContent">
+    <button id="send" onclick="sendMessage()">Send</button>
+    <input type="text" id="roomID">
+    <button id="connect" onclick="connect()">Connect</button>
+</body>
+
+</html>

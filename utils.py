@@ -5,7 +5,7 @@ def check_join_data(data):
     if not all(i in data_keys for i in keys):
         return False
 
-    if not data["creator_options"].get("currently_watching"):
+    if not "currently_watching" in data["creator_options"]:
         return False
 
     return True

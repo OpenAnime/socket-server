@@ -3,7 +3,6 @@ from aiohttp import web
 from user_manager import UserManager
 
 import utils
-import json
 
 HOST = "127.0.0.1"
 PORT = 3581
@@ -35,27 +34,37 @@ async def join_room(sid, data):
 
     if s_user is not None:
         user_manager.remove_user(sid)
+        sio.leave_room(sid, s_user.roomname)
 
-    room_users = user_manager.get_room_users(data["roomname"])
+    room = user_manager.check_room(data["roomname"])
 
-    if len(room_users) == 0:
+    print(sid, room, data["roomname"])
+
+    if not room:
+        print(1)
         new_user = user_manager.join_user(
             sid, data["name"], data["roomname"], data["location"]
         )
     else:
         new_user = user_manager.join_user(sid, data["name"], data["roomname"], None)
         opts = [
-            i for i in user_manager.users if i["creator_options"]["currently_watching"]
+            i for i in user_manager.users if i.create_options["currently_watching"]
         ]
+
+        if len(opts) < 1:
+            return
+
+        print(3)
 
         await sio.emit(
             "change_location",
             {
-                "change_to": opts["create_options"]["currently_watching"],
+                "change_to": opts[0].create_options["currently_watching"],
             },
         )
 
-    sio.enter_room(sid, new_user.roomname)
+
+    sio.enter_room(sid, data["roomname"])
     await sio.emit(
         "send_data",
         {"id": sid, "username": new_user.name, "roomname": new_user.roomname},
@@ -73,9 +82,9 @@ async def change_video_status(sid, data):
 
 @sio.event
 async def server_message(sid, data):
-    # print(data, json.dumps(user_manager.users[0].__dict__, indent=2))
     user = user_manager.get_user(sid)
     if user is not None:
+        print(user.name, user.roomname)
         await sio.emit(
             "client_message",
             {"message_content": data, "author": user.name},
