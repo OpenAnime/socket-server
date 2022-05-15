@@ -3,7 +3,6 @@ class User:
         self.sid = sid
         self.name = name
         self.roomname = roomname
-        self.currently_watching = currently_watcing
         self.create_options = {"currently_watching": currently_watcing}
 
 
