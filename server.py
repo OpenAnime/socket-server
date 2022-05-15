@@ -41,7 +41,6 @@ async def join_room(sid, data):
     print(sid, room, data["roomname"])
 
     if not room:
-        print(1)
         new_user = user_manager.join_user(
             sid, data["name"], data["roomname"], data["location"]
         )
@@ -53,8 +52,6 @@ async def join_room(sid, data):
 
         if len(opts) < 1:
             return
-
-        print(3)
 
         await sio.emit(
             "change_location",
@@ -84,7 +81,6 @@ async def change_video_status(sid, data):
 async def server_message(sid, data):
     user = user_manager.get_user(sid)
     if user is not None:
-        print(user.name, user.roomname)
         await sio.emit(
             "client_message",
             {"message_content": data, "author": user.name},
