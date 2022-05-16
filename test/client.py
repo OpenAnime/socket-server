@@ -13,7 +13,9 @@ async def connect():
             "roomname": "test_room",
             "name": "test_name",
             "location": "idk what is this",
-            "creator_options": {"currently_watching": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"},
+            "creator_options": {
+                "currently_watching": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            },
         },
     )
     await sio.emit("server_message", "Hello World")

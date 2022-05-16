@@ -4,7 +4,9 @@ class User:
     roomname: str
     create_options: dict
 
-    def __init__(self, sid=None, name=None, roomname=None, currently_watcing=None) -> None:
+    def __init__(
+        self, sid=None, name=None, roomname=None, currently_watcing=None
+    ) -> None:
         self.sid = sid
         self.name = name
         self.roomname = roomname

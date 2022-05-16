@@ -18,7 +18,7 @@ if __name__ == "__main__":
                 "roomname": "test",
                 "name": "test",
                 "location": "test",
-                "creator_options": {"currently_watching": True},
+                "creator_options": {"currently_watching": "Test"},
             }
         )
     )
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                 "_roomname": "test",
                 "name": "test",
                 "location": "test",
-                "creator_options": {"_currently_watching": True},
+                "creator_options": {"_currently_watching": "Test"},
             }
         )
     )

@@ -29,7 +29,6 @@ async def join_room(sid, data):
     if not is_data_valid:
         return
 
-
     s_user = user_manager.get_user(sid)
 
     if s_user is not None:
@@ -38,17 +37,13 @@ async def join_room(sid, data):
 
     room = user_manager.check_room(data["roomname"])
 
-    print(sid, room, data["roomname"])
-
     if not room:
         new_user = user_manager.join_user(
             sid, data["name"], data["roomname"], data["location"]
         )
     else:
         new_user = user_manager.join_user(sid, data["name"], data["roomname"], None)
-        opts = [
-            i for i in user_manager.users if i.create_options["currently_watching"]
-        ]
+        opts = [i for i in user_manager.users if i.create_options["currently_watching"]]
 
         if len(opts) < 1:
             return
@@ -59,7 +54,6 @@ async def join_room(sid, data):
                 "change_to": opts[0].create_options["currently_watching"],
             },
         )
-
 
     sio.enter_room(sid, data["roomname"])
     await sio.emit(
