@@ -9,7 +9,7 @@ function connect() {
         roomname: document.querySelector('#roomID').value.trim(),
         location: window.location.href,
         creator_options: {
-            currently_watching: 'Eşek seks',
+            currently_watching: 'Nothing', 
         },
     });
 }
