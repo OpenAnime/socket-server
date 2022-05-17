@@ -2,7 +2,7 @@ import socketio
 from aiohttp import web
 from user_manager import UserManager
 
-import utils
+from utils import check_join_data
 
 HOST = "127.0.0.1"
 PORT = 3581
@@ -24,7 +24,7 @@ async def connect(sid, environ):
 
 @sio.event
 async def join_room(sid, data):
-    is_data_valid = utils.check_join_data(data)
+    is_data_valid = check_join_data(data)
 
     if not is_data_valid:
         return

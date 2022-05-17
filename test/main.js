@@ -9,13 +9,13 @@ function connect() {
         roomname: document.querySelector('#roomID').value.trim(),
         location: window.location.href,
         creator_options: {
-            currently_watching: 'Nothing', 
+            currently_watching: 'Nothing',
         },
     });
 }
 
 socket.on('send_data', (data) => {
-    alert(`connected to room ${data.roomname} ${socket.id}`);
+    alert(`${data.username} connected to room ${data.roomname}`);
 });
 
 function sendMessage() {
