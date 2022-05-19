@@ -24,8 +24,8 @@ class UserManager:
 
         return user
 
-    def remove_user(self, id) -> None:
-        self.users = [i for i in self.users if i.sid != id]
+    def remove_user(self, sid) -> None:
+        self.users = [i for i in self.users if i.sid != sid]
 
     def get_user(self, sid) -> User:
         for i in self.users:
